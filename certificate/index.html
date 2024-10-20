@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="documentTitle">Certificate of Authenticity</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Remixicon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- HTML2PDF JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <!-- Signature Pad JS -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid pt-5">
+        <div class="row d-flex">
+            <!-- Description Column -->
+            <div class="col-lg-3 px-3 mt-5 mb-5 description">
+                <div>
+                    <p class="fw-bold" data-translate="description1">You can add a certificate of authenticity to your printed artwork, you just need to fill in the details, add a small image of the work, and save as a pdf file that you can download for your own use.</p>
+                    <p class="fw-bold" data-translate="description2">If you would like us to print the certificate, you can choose between two options of A4 size papers, fine art matte paper 200 gsm at a cost of 35 NIS, or on a special paper by Hahnemuhle that comes with a pair of hologram stickers matching the certificate and work, at a cost of 70 NIS.</p>
+                </div>
+                <img class="w-60 mt-4" src="images/certficate.png" alt="" data-translate="certificateImageAlt">
+            </div>
+            <!-- Form Column -->
+            <div class="col-lg-9 mt-5 mb-5 px-4">
+                <h2 class="fw-bold" data-translate="certificateTitle">Certificate of Authenticity</h2>
+                <div class="row h-100 pb-5">
+                    <!-- Left Column of Form -->
+                    <div class="col-lg-6 d-flex flex-column justify-content-between px-3">
+                        <!-- Artist Name -->
+                        <div class="form-floating mb-3">
+                            <input type="text" id="artistNameInput" class="form-control" placeholder="">
+                            <label for="artistNameInput" data-translate="artistNameLabel">Artist Name*</label>
+                        </div>
+                        <!-- Artwork Title -->
+                        <div class="form-floating mb-3">
+                            <input type="text" id="artworkTitleInput" class="form-control" placeholder="">
+                            <label for="artworkTitleInput" data-translate="artworkTitleLabel">Artwork Title*</label>
+                        </div>
+                        <!-- Edition -->
+                        <div class="mb-3">
+                            <label for="edition" data-translate="editionLabel">Edition*</label>
+                            <div class="d-flex mt-2 align-items-center justify-content-between gap-2 edition-group">
+                                <div class="bordered-input">
+                                    <input type="text" id="editionNumberInput" placeholder="">
+                                </div>
+                                <span class="fw-bold">/</span>
+                                <div class="bordered-input">
+                                    <input type="text" id="editionTotalInput" placeholder="">
+                                </div>
+                                <span class="fw-bold">+</span>
+                                <div class="bordered-input d-flex justify-content-center align-items-center px-1">
+                                    <input type="text" id="editionAPInput" placeholder="">
+                                    <span class="fw-bold">AP</span>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-sm grey" data-translate="artisticProofExplanation">Artistic Proof explanation</p>
+                        </div>
+                        <!-- Media -->
+                        <div class="mb-3">
+                            <label for="media" data-translate="mediaLabel">Media*</label>
+                            <div>
+                                <div class="d-flex gap-2 mb-3 mt-3 radio-label">
+                                    <input type="radio" name="media" id="mediaFineArt" value="Archival Pigment Print On Fine Art Paper">
+                                    <p class="mb-0 fw-bold" data-translate="mediaFineArtOption">Archival Pigment Print On Fine Art Paper</p>
+                                </div>
+                                <div class="d-flex gap-2 mb-2 radio-label">
+                                    <input type="radio" name="media" id="mediaCustom" value="Custom">
+                                    <div class="form-floating mb-3 w-100">
+                                        <input id="CustomMedia" type="text" class="form-control" placeholder="">
+                                        <label for="CustomMedia" data-translate="mediaCustomLabel">Custom Text</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dimensions -->
+                        <div>
+                            <label for="dimensions" data-translate="dimensionsLabel">Dimensions*</label>
+                            <div class="d-flex">
+                                <div class="col-sm-7 mt-2 gap-2 align-items-center d-flex dimensions-group">
+                                    <div class="bordered-input">
+                                        <input type="text" id="dimensionsWidth" placeholder="Width" class="text-center">
+                                    </div>
+                                    <span class="fw-bold">x</span>
+                                    <div class="bordered-input">
+                                        <input id="dimensionsHeight" type="text" placeholder="Height" class="text-center">
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 px-3 d-flex align-items-center gap-2 radio-label">
+                                    <input type="radio" id="includeWhiteBorders" class="w-c-20">
+                                    <p class="mb-0 fw-bold" data-translate="includingWhiteBorders">including white borders</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column of Form -->
+                    <div class="col-lg-6 px-3">
+                        <!-- Year Created and Printed -->
+                        <div class="d-flex gap-2 justify-content-between year-created">
+                            <div class="form-floating mb-3 w-100">
+                                <input id="yearCreatedInput" type="text" class="form-control" placeholder="">
+                                <label for="yearCreatedInput" data-translate="yearCreatedLabel">Year Created*</label>
+                            </div>
+                            <div class="form-floating mb-3 w-100">
+                                <input id="yearPrintedInput" type="text" class="form-control" placeholder="">
+                                <label for="yearPrintedInput" data-translate="yearPrintedLabel">Year Printed</label>
+                            </div>
+                        </div>
+                        <!-- The Artwork -->
+                        <div class="mb-3">
+                            <label for="imageInput" data-translate="theArtworkLabel">The Artwork</label>
+                            <div style="cursor: pointer;" class="bordered-input mt-2 p-c rounded px-2 d-flex justify-content-between align-items-center" onclick="document.getElementById('imageInput').click();">
+                                <span class="fw-bold" id="fileLabel" data-translate="fileUploadLabel">File Upload</span>
+                                <i class="ri-add-large-line"></i>
+                            </div>
+                            <input type="file" id="imageInput" style="display: none;" accept="image/jpeg" />
+                            <p class="grey mt-2 mb-2 text-sm" data-translate="smallVersionNote">Small version of the work. Up to 1 Mb. Jpg files only</p>
+                            <div id="uploadedFileInfo" style="display: none;">
+                                <span class="text-sm fw-bold" id="uploadedFileName"></span>
+                                <i class="ri-close-line" id="removeFileIcon" style="cursor: pointer;"></i>
+                            </div>
+                        </div>
+                        <!-- Digital Signature -->
+                        <div class="mb-2">
+                            <label for="signatureInput" data-translate="digitalSignatureLabel">Digital Signature</label>
+                            <div class="d-flex justify-content-between align-items-center gap-3">
+                                <!-- Signature File Upload -->
+                                <div style="cursor: pointer;" class="bordered-input w-100 mt-2 h-c-50 rounded px-2 d-flex justify-content-between align-items-center" onclick="document.getElementById('signatureFileInput').click();">
+                                    <span class="fw-bold" data-translate="fileUploadLabel">File Upload</span>
+                                    <i class="ri-add-large-line"></i>
+                                </div>
+                                <input type="file" id="signatureFileInput" style="display: none;" accept="image/jpeg" />
+                                <span data-translate="orText">or</span>
+                                <!-- Signature Drawing -->
+                                <div style="cursor: pointer;" class="bordered-input w-100 mt-2 h-c-50 rounded px-2 d-flex justify-content-between align-items-center" onclick="openSignaturePopup()">
+                                    <span class="fw-bold" data-translate="addDigitalSignature">Add a digital signature</span>
+                                    <i class="ri-add-large-line"></i>
+                                </div>
+                            </div>
+                            <p class="grey mt-2 mb-2 text-sm" data-translate="upTo1MbNote">Up to 1 Mb. Jpg files only</p>
+                            <!-- Signature File Information Display -->
+                            <div id="signatureUploadedInfo" style="display: none;">
+                                <span class="text-sm fw-bold" id="signatureUploadedFileName"></span>
+                                <i class="ri-close-line" id="removeSignatureIcon" style="cursor: pointer;"></i>
+                            </div>
+                        </div>
+                        <!-- Save Button and Instructions -->
+                        <div class="d-flex justify-content-center align-items-end gap-4">
+                            <button class="btn btn-primary mt-3 border-0 save-btn bg-black" onclick="generateAndDownloadPDF()" data-translate="saveAsPDFButton">Save as PDF</button>
+                            <p class="grey mb-0 instruction text-sm" data-translate="mandatoryFieldsNote">All fields with * are mandatory. Fields that are not filled in will not appear in the certificate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signature Popup -->
+    <div id="signaturePopup" class="signature-popup" style="display:none;">
+        <div class="signature-popup-content">
+            <h3 data-translate="drawSignatureTitle">Draw Your Signature</h3>
+            <canvas id="signatureCanvas" width="300" height="150"></canvas>
+            <div class="signature-buttons">
+                <button id="clearSignature" data-translate="clearButton">Clear</button>
+                <button id="saveSignature" data-translate="saveButton">Save</button>
+                <button id="closePopup" data-translate="closeButton">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
