@@ -304,36 +304,38 @@ function generateAndDownloadPDF() {
     var imageUrl = artworkImage || '';
 
     // Define the content that matches your certificate design
-    var certificateContent = `
-    <div style="width: 185mm; height: 275mm; margin: 45px; text-align: center; font-family: Arial, sans-serif; border: 2px solid black; box-sizing: border-box; direction: ${lang === 'he' ? 'rtl' : 'ltr'};">
-        <!-- First inner black box -->
-        <div style="width: 182mm; height: 272mm; margin: 1mm; border: 1px solid black; box-sizing: border-box;">
-            <!-- Second inner black box -->
-            <div style="width: 180.5mm; height: 270.5mm; margin: 0.5mm; border: 1px solid black; box-sizing: border-box;">
+     var certificateContent = `
+        <div style="width: 185mm; height: 275mm; margin: 45px; text-align: center; font-family: Arial, sans-serif; border: 2px solid black; box-sizing: border-box;">
+            <!-- First inner black box -->
+            <div style="width: 182mm; height: 272mm; margin: 1mm; border: 1px solid black; box-sizing: border-box;">
+                <!-- Second inner black box -->
+                <div style="width: 180.5mm; height: 270.5mm; margin: 0.5mm; border: 1px solid black; box-sizing: border-box;">
 
-                <h1 style="font-weight:400; font-family:'Caslon Ionic'; font-size: 45px; margin: 10px; margin-top: 60px;  line-height: 1.2;">
-                    <span style="display: block;" data-translate="certificateTitle">${translations[lang]['certificateTitle'].toUpperCase()}</span>
-                </h1>
-                <p style="margin-top: 30px; margin-bottom:50px; font-weight:400; font-family:'Caslon Ionic'; font-size: 18px;">
-                    ${lang === 'he' ? 'מסמך זה מאשר שהיצירה הזו היא יצירה מקורית של האמן' : 'THIS DOCUMENT CERTIFIES THAT THIS ARTWORK IS AN ORIGINAL WORK BY THE ARTIST'}
-                </p>
-                <div style="width: 500px; height: 250px; background-color: lightgray; margin: 20px auto; display: flex; justify-content: center; align-items: center;">
-                    ${imageUrl ? `<img src="${imageUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain;">` : ''}
-                </div>
-                <p style="margin-top: 70px; font-family:'Caslon Ionic'; font-size: 16px;">${artistName}</p>
-                <p style="margin-top: -20px; margin-bottom: 30px; font-family:'Quadrant Text Mono';  font-size: 15px;">${artworkTitle}</p>
-                <p style="margin-top: 10px; margin-bottom: 20px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">${translations[lang]['editionLabel']}: ${edition}</p>
-                <p style="margin-top: -15px; margin-bottom: 20px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">${translations[lang]['mediaLabel']}: ${media}</p>
-                <p style="margin-top: -15px; margin-bottom: 20px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">${translations[lang]['dimensionsLabel']}: ${dimensions}</p>
-                <p style="margin-top: -15px; margin-bottom: 20px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">${translations[lang]['yearCreatedLabel']}:  ${yearCreated}</p>
-                <p style="margin-top: -15px; margin-bottom: 20px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">${translations[lang]['yearPrintedLabel']}:  ${yearPrinted}</p>
-                <div style="width: 200px; height: 60px; margin: 0px auto; display: flex; justify-content: center; align-items: center;">
-                    ${signatureImage ? `<img src="${signatureImage}" alt="Signature" style="max-width: 100%; max-height: 100%; object-fit: contain;">` : ''}
-                </div>
-                <div style="width: 50%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
-                <div style="font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 10px;">${artistName}</div>
-
-                <div style="margin-top: 35px; padding-top: 5px;">
+                    <h1 style=" font-weight:400; font-family:'Caslon Ionic'; font-size: 45px; margin: 10px; margin-top: 60px;  line-height: 1.2;">
+                        <span style="display: block;">CERTIFICATE OF</span>
+                        <span style="display: block;">AUTHENTICITY</span>
+                    </h1>
+                    <p style="margin-top: 30px; margin-bottom:50px; font-weight:400; font-family:'Caslon Ionic'; font-size: 18px;">
+                        THIS DOCUMENT CERTIFIES THAT THIS ARTWORK IS <br> AN ORIGINAL WORK BY THE ARTIST
+                    </p>
+                    <div style="width: 500px; height: 250px; background-color: lightgray; margin: 20px auto; display: flex; justify-content: center; align-items: center;">
+                        <img src="${imageUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                    <p style="margin-top: 70px; font-family:'Caslon Ionic'; font-size: 16px;">${artistName}</p>
+                    <p style="margin-top: -20px; margin-bottom: 30px; font-family:'Quadrant Text Mono';  font-size: 15px;">${artworkTitle}</p>
+                    <p style="margin-top: 10px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Edition: ${edition}</p>
+                    <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Media: ${media}</p>
+                    <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Dimensions: ${dimensions}</p>
+                    <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Year Created:  ${yearCreated}</p>
+                    <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Year Printed:  ${yearPrinted}</p>
+                    <div style="width: 200px; height: 60px; margin: 0px auto; display: flex; justify-content: center; align-items: center;">
+                    <img src="${signatureImage}" alt="Signature" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                    <div style="width: 50%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
+                    <div style="font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 10px;">${artistName}</div>
+                    
+                   
+<div style="margin-top: 55px; padding-top: 5px;">
   
     <div style="width: 95%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
     
@@ -351,11 +353,12 @@ function generateAndDownloadPDF() {
     </div>
 </div>
 
-            </div> <!-- End second inner black box -->
-        </div> <!-- End first inner black box -->
-    </div> <!-- End outermost black box -->
-    `;
 
+                </div> <!-- End second inner black box -->
+            </div> <!-- End first inner black box -->
+        </div> <!-- End outermost black box -->
+        `;
+    
     // Use html2pdf.js to generate the PDF
     var opt = {
         margin: [0.5, 0.5, 0.5, 0.5],  // Set margins to avoid cutting off the edges
