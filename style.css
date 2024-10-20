@@ -24,6 +24,7 @@ input {
 label {
     font-weight: 600;
     color: #808080 !important;
+    background-color: transparent !important;
 }
 
 .form-control:focus {
