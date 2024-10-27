@@ -167,12 +167,11 @@
     <!-- Signature Popup -->
     <div id="signaturePopup" class="signature-popup" style="display:none;">
         <div class="signature-popup-content">
-            <h3 data-translate="drawSignatureTitle">Draw Your Signature</h3>
-            <canvas id="signatureCanvas" width="300" height="150"></canvas>
+            <span id="closePopup" class="close-btn">&times;</span>
+            <canvas id="signatureCanvas" width="400" height="150"></canvas>
             <div class="signature-buttons">
-                <button id="clearSignature" data-translate="clearButton">Clear</button>
-                <button id="saveSignature" data-translate="saveButton">Save</button>
-                <button id="closePopup" data-translate="closeButton">Close</button>
+                <button id="clearSignature"  class="btn clear-btn" data-translate="clearButton">Clear</button>
+                <button id="saveSignature" class="btn save-btn-pop" data-translate="saveButton">Save</button>
             </div>
         </div>
     </div>

@@ -277,12 +277,21 @@ function generateAndDownloadPDF() {
     var editionNumber = document.getElementById("editionNumberInput").value;
     var editionTotal = document.getElementById("editionTotalInput").value;
     var editionAP = document.getElementById("editionAPInput").value;
-    var edition = ` ${editionNumber}/${editionTotal}  +  ${editionAP} AP`;
+
+    let edition = `${editionNumber}/${editionTotal}`;
+    if (editionAP.trim() !== "") {
+        edition += ` + ${editionAP} AP`;
+    }
 
     // Dimensions
     var dimensionsWidth = document.getElementById("dimensionsWidth").value;
     var dimensionsHeight = document.getElementById("dimensionsHeight").value;
     var dimensions = ` ${dimensionsWidth}cm  x  ${dimensionsHeight}cm`;
+
+    var includeWhiteBorders = document.getElementById("includeWhiteBorders").checked;
+    if (includeWhiteBorders) {
+        dimensions += " (include white borders)";
+    }
 
     // Media selection
     var selectedMedia = document.querySelector('input[name="media"]:checked');
@@ -305,11 +314,11 @@ function generateAndDownloadPDF() {
 
     // Define the content that matches your certificate design
      var certificateContent = `
-        <div style="width: 185mm; height: 275mm; margin: 45px; text-align: center; font-family: Arial, sans-serif; border: 2px solid black; box-sizing: border-box;">
+        <div style="width: 185mm; height: 275mm; margin: 45px; text-align: center; font-family: Arial, sans-serif; border: 2px solid black; box-sizing: border-box; page-break-inside: avoid;">
             <!-- First inner black box -->
-            <div style="width: 182mm; height: 272mm; margin: 1mm; border: 1px solid black; box-sizing: border-box;">
+            <div style="width: 182mm; height: 272mm; margin: 1mm; border: 1px solid black; box-sizing: border-box; page-break-inside: avoid;">
                 <!-- Second inner black box -->
-                <div style="width: 180.5mm; height: 270.5mm; margin: 0.5mm; border: 1px solid black; box-sizing: border-box;">
+                <div style="width: 180.5mm; height: 270.5mm; margin: 0.5mm; border: 1px solid black; box-sizing: border-box; page-break-inside: avoid;">
 
                     <h1 style=" font-weight:400; font-family:'Caslon Ionic'; font-size: 45px; margin: 10px; margin-top: 60px;  line-height: 1.2;">
                         <span style="display: block;">CERTIFICATE OF</span>
@@ -318,7 +327,7 @@ function generateAndDownloadPDF() {
                     <p style="margin-top: 30px; margin-bottom:50px; font-weight:400; font-family:'Caslon Ionic'; font-size: 18px;">
                         THIS DOCUMENT CERTIFIES THAT THIS ARTWORK IS <br> AN ORIGINAL WORK BY THE ARTIST
                     </p>
-                    <div style="width: 500px; height: 250px; background-color: lightgray; margin: 20px auto; display: flex; justify-content: center; align-items: center;">
+                    <div style="width: 500px; height: 250px; margin: 20px auto; display: flex; justify-content: center; align-items: center;">
                         <img src="${imageUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                     </div>
                     <p style="margin-top: 70px; font-family:'Caslon Ionic'; font-size: 16px;">${artistName}</p>
@@ -327,15 +336,17 @@ function generateAndDownloadPDF() {
                     <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Media: ${media}</p>
                     <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Dimensions: ${dimensions}</p>
                     <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Year Created:  ${yearCreated}</p>
-                    <p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Year Printed:  ${yearPrinted}</p>
-                    <div style="width: 200px; height: 60px; margin: 0px auto; display: flex; justify-content: center; align-items: center;">
+                    ${yearPrinted 
+                        ? `<p style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">Year Printed: ${yearPrinted}</p>` 
+                        : `<div style="margin-bottom: 35px;"></div>`}
+                    <div style="width: 230px; height: 80px; margin: 0px auto; display: flex; justify-content: center; align-items: center;">
                     <img src="${signatureImage}" alt="Signature" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                     </div>
                     <div style="width: 50%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
                     <div style="font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 10px;">${artistName}</div>
                     
                    
-<div style="margin-top: 55px; padding-top: 5px;">
+<div style="margin-top: 40px; padding-top: 5px;">
   
     <div style="width: 95%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
     
@@ -372,10 +383,38 @@ function generateAndDownloadPDF() {
     html2pdf().from(certificateContent).set(opt).save();
 }
 
+
+
+function makeRadioButtonsDeselectable() {
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('click', function() {
+            // Toggle the custom 'data-was-checked' attribute
+            if (radio.hasAttribute('data-was-checked')) {
+                radio.checked = false;
+                radio.removeAttribute('data-was-checked');
+            } else {
+                radio.setAttribute('data-was-checked', true);
+            }
+        });
+
+        // Ensure the 'data-was-checked' attribute is removed when clicking another radio in the same group
+        radio.addEventListener('change', function() {
+            radioButtons.forEach(otherRadio => {
+                if (otherRadio !== radio) {
+                    otherRadio.removeAttribute('data-was-checked');
+                }
+            });
+        });
+    });
+}
+
 // Initialize the App on Page Load
 document.addEventListener('DOMContentLoaded', function () {
     const lang = getLanguageFromURL();
     setLanguageDirection(lang);
     translatePage(lang);
     addEventListeners(lang);
+    makeRadioButtonsDeselectable();
 });
