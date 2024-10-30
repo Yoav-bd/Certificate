@@ -40,6 +40,10 @@ label {
     padding-bottom: .625rem;
 }
 
+.form-floating > label::after {
+    background-color: transparent !important;
+}
+
 .bordered-input {
     border: 2px solid black;
 }
