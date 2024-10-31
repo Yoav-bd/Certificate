@@ -29,6 +29,7 @@ const translations = {
         closeButton: 'Close',
         widthPlaceholder: 'Width',
         heightPlaceholder: 'Height',
+        warning: 'Please fill out all mandatory fields',
     },
     he: {
         description1: 'ניתן להוסיף להדפסה תעודת מקוריות על מסמך מעוצב שלנו, עליכם למלא את הפרטים, להוסיף תמונה מוקטנת של העבודה, ולשמור כקובץ PDF אותו אתם יכולים להוריד לשימושכם',
@@ -60,6 +61,8 @@ const translations = {
         closeButton: 'סגור',
         widthPlaceholder: 'רוחב',
         heightPlaceholder: 'גובה',
+        warning: 'נא למלא את כל שדות החובה',
+
     }
 };
 
@@ -280,6 +283,9 @@ function addEventListeners(lang) {
 
 
 function validateForm() {
+    // Hide the warning message initially
+    document.getElementById("mandatoryWarning").style.display = "none";
+
     const requiredFields = [
         { id: "artistNameInput", label: "Artist Name" },
         { id: "artworkTitleInput", label: "Artwork Title" },
@@ -293,7 +299,7 @@ function validateForm() {
     for (const field of requiredFields) {
         const input = document.getElementById(field.id);
         if (!input.value.trim()) {
-            alert(`Please fill out the mandatory field: ${field.label}`);
+            document.getElementById("mandatoryWarning").style.display = "block";
             input.focus();  // Focus on the first empty field
             return false;
         }
@@ -301,7 +307,7 @@ function validateForm() {
 
     // Check if artwork file is uploaded
     if (!artworkImage) {
-        alert("Please upload the artwork file.");
+        document.getElementById("mandatoryWarning").style.display = "block";
         document.getElementById("imageInput").focus();
         return false;
     }
@@ -309,7 +315,7 @@ function validateForm() {
     // Check if a media option is selected
     const mediaSelected = document.querySelector('input[name="media"]:checked');
     if (!mediaSelected) {
-        alert("Please select a media option.");
+        document.getElementById("mandatoryWarning").style.display = "block";
         document.getElementById("mediaFineArt").focus();
         return false;
     }
