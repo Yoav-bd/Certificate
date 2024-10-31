@@ -88,11 +88,11 @@
                             <div class="d-flex">
                                 <div class="col-sm-7 mt-2 gap-2 align-items-center d-flex dimensions-group">
                                     <div class="bordered-input">
-                                        <input type="text" id="dimensionsWidth" placeholder="Width" class="text-center">
+                                        <input type="text" id="dimensionsWidth" placeholder="Width" class="text-center" data-translate="widthPlaceholder">
                                     </div>
                                     <span class="fw-bold">x</span>
                                     <div class="bordered-input">
-                                        <input id="dimensionsHeight" type="text" placeholder="Height" class="text-center">
+                                        <input id="dimensionsHeight" type="text" placeholder="Height" class="text-center" data-translate="heightPlaceholder">
                                     </div>
                                 </div>
                                 <div class="col-sm-5 px-3 d-flex align-items-center gap-2 radio-label">
@@ -154,8 +154,8 @@
                             </div>
                         </div>
                         <!-- Save Button and Instructions -->
-                        <div class="d-flex justify-content-center align-items-end gap-4">
-                            <button class="btn btn-primary mt-3 border-0 save-btn bg-black" onclick="generateAndDownloadPDF()" data-translate="saveAsPDFButton">Save as PDF</button>
+                        <div class="d-flex align-items-end gap-4">
+                            <button class="btn btn-primary mt-3 border-0 save-btn bg-black" onclick="generateAndDownloadPDF()" data-translate="saveAs">Save as PDF</button>
                             <p class="grey mb-0 instruction text-sm" data-translate="mandatoryFieldsNote">All fields with * are mandatory. Fields that are not filled in will not appear in the certificate</p>
                         </div>
                     </div>

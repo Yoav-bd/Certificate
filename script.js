@@ -20,41 +20,46 @@ const translations = {
         digitalSignatureLabel: 'Digital Signature',
         addDigitalSignature: 'Add a digital signature',
         upTo1MbNote: 'Up to 1 Mb. Jpg files only',
-        saveAsPDFButton: 'Save as PDF',
+        saveAs: 'Save as PDF',
         mandatoryFieldsNote: 'All fields with * are mandatory. Fields that are not filled in will not appear in the certificate',
         orText: 'or',
         drawSignatureTitle: 'Draw Your Signature',
         clearButton: 'Clear',
         saveButton: 'Save',
         closeButton: 'Close',
+        widthPlaceholder: 'Width',
+        heightPlaceholder: 'Height',
     },
     he: {
+        description1: 'ניתן להוסיף להדפסה תעודת מקוריות על מסמך מעוצב שלנו, עליכם למלא את הפרטים, להוסיף תמונה מוקטנת של העבודה, ולשמור כקובץ PDF אותו אתם יכולים להוריד לשימושכם',
+        description2:'במידה ותרצו שנדפיס את התעודה, ניתן לבחור בין שתי אופציות של ניירות בגודל A4, נייר פיין ארט מט 200 גרם בעלות של 35 ש"ח, או על נייר ייעודי של חברת HAHNEMUHLE שמגיע עם זוג מדבקות הולגרמה תואמות לתעודה ולעבודה, בעלות של 70 ש"ח (לינק לאתר של HAHENMUHLE)',
         documentTitle: 'תעודת אותנטיות',
         certificateTitle: 'תעודת אותנטיות',
-        artistNameLabel: 'שם האמן*',
-        artworkTitleLabel: 'שם היצירה*',
+        artistNameLabel: 'שם האמן (אנגלית)*',
+        artworkTitleLabel: 'שם היצירה (אנגלית)*',
         editionLabel: 'מהדורה*',
-        artisticProofExplanation: 'הסבר על הגהה אמנותית',
-        mediaLabel: 'מדיה*',
-        mediaFineArtOption: 'הדפסת פיגמנט ארכיונית על נייר אמנותי',
-        mediaCustomLabel: 'מותאם אישית',
-        dimensionsLabel: 'מידות*',
+        artisticProofExplanation: 'הסבר ארטיסטיק פרוף',
+        mediaLabel: 'טכניקה וחומרים*',
+        mediaCustomLabel: 'טקסט חופשי (אנגלית)',
+        dimensionsLabel: 'מידות היצירה (ס״מ)*',
         includingWhiteBorders: 'כולל שוליים לבנים',
-        yearCreatedLabel: 'שנת יצירה*',
+        yearCreatedLabel: 'שנת היצירה*',
         yearPrintedLabel: 'שנת הדפסה',
         theArtworkLabel: 'היצירה',
         fileUploadLabel: 'העלאת קובץ',
-        smallVersionNote: 'גרסה קטנה של היצירה. עד 1 מגהבייט. קבצי JPG בלבד',
+        smallVersionNote: 'גרסה מוקטנת של היצירה. עד 1 מ״ב, פורמט JPG בלבד.',
         digitalSignatureLabel: 'חתימה דיגיטלית',
         addDigitalSignature: 'הוסף חתימה דיגיטלית',
-        upTo1MbNote: 'עד 1 מגהבייט. קבצי JPG בלבד',
-        saveAsPDFButton: 'שמור כ-PDF',
-        mandatoryFieldsNote: 'כל השדות עם * הם חובה. שדות שלא ימולאו לא יופיעו בתעודה',
+        upTo1MbNote: 'עד 1 מ״ב, פורמט JPG בלבד.',
+        saveAs: 'שמור כ-PDF',
+        mandatoryFieldsNote: 'כל השדות המסומנים בכוכבית (*) הן חובה. שדות שלא ימולאו לא יופיעו בתעודה.',
         orText: 'או',
         drawSignatureTitle: 'צייר את החתימה שלך',
         clearButton: 'נקה',
         saveButton: 'שמור',
         closeButton: 'סגור',
+        widthPlaceholder: 'רוחב',
+        heightPlaceholder: 'גובה',
     }
 };
 
@@ -106,16 +111,24 @@ function translatePage(lang) {
         const key = element.getAttribute('data-translate');
         const translation = translations[lang][key];
         if (translation) {
-            if (element.placeholder !== undefined && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA')) {
+            if (element.tagName === 'INPUT' && element.type === 'text') {
+                // Text input placeholders
                 element.placeholder = translation;
-            } else if (element.value !== undefined && (element.tagName === 'INPUT' || element.tagName === 'BUTTON')) {
-                element.value = translation;
+            } else if (element.tagName === 'BUTTON' || (element.tagName === 'INPUT' && element.type === 'submit')) {
+                // Buttons or submit inputs
+                element.innerText = translation; // for <button> elements
+                element.value = translation; // for <input type="submit">
+            } else if (element.tagName === 'INPUT' && element.type === 'file') {
+                // File input placeholders
+                element.setAttribute('value', translation);
             } else {
+                // For other elements (e.g., <label>, <p>)
                 element.textContent = translation;
             }
         }
     });
 }
+
 
 // Initialize Event Listeners
 function addEventListeners(lang) {
@@ -265,8 +278,55 @@ function addEventListeners(lang) {
     toggleCustomMediaInput();
 }
 
+
+function validateForm() {
+    const requiredFields = [
+        { id: "artistNameInput", label: "Artist Name" },
+        { id: "artworkTitleInput", label: "Artwork Title" },
+        { id: "editionNumberInput", label: "Edition Number" },
+        { id: "editionTotalInput", label: "Edition Total" },
+        { id: "dimensionsWidth", label: "Dimensions Width" },
+        { id: "dimensionsHeight", label: "Dimensions Height" },
+        { id: "yearCreatedInput", label: "Year Created" }
+    ];
+
+    for (const field of requiredFields) {
+        const input = document.getElementById(field.id);
+        if (!input.value.trim()) {
+            alert(`Please fill out the mandatory field: ${field.label}`);
+            input.focus();  // Focus on the first empty field
+            return false;
+        }
+    }
+
+    // Check if artwork file is uploaded
+    if (!artworkImage) {
+        alert("Please upload the artwork file.");
+        document.getElementById("imageInput").focus();
+        return false;
+    }
+
+    // Check if a media option is selected
+    const mediaSelected = document.querySelector('input[name="media"]:checked');
+    if (!mediaSelected) {
+        alert("Please select a media option.");
+        document.getElementById("mediaFineArt").focus();
+        return false;
+    }
+
+    return true;
+}
+
+
 // Generate and Download PDF
 function generateAndDownloadPDF() {
+
+
+    if (!validateForm()) {
+        return;  // Stop if any required fields are missing
+    }
+
+
     const lang = getLanguageFromURL();
 
     // Fetching input data from the form

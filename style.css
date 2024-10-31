@@ -122,6 +122,11 @@ input[type="radio"] {
     padding: 15px 0px;
 }
 
+input::placeholder {
+    font-family: "Schibsted Grotesk", sans-serif;
+    font-weight: bolder;
+}
+
 @media screen and (max-width: 992px) {
     .description {
         display: none !important;
@@ -151,6 +156,36 @@ input[type="radio"] {
     }
 }
 
+
+@media screen and (max-width: 576px) {
+    .signature-popup {
+        padding: 20px;
+        width: 100%;
+        max-width: 90vw; /* Increases popup width to 90% of the viewport width */
+        height: auto;
+        max-height: 80vh; /* Increases popup height to 80% of the viewport height */
+        border-radius: 10px;
+    }
+
+    .signature-popup-content {
+        width: 100%;
+        max-width: 100%; /* Ensures full width inside the popup */
+    }
+
+    #signatureCanvas {
+        width: 100%;
+        max-width: 100%; /* Fills the width of the popup */
+        height: auto;
+        max-height: 60vh; /* Ensures canvas is larger but doesn’t exceed 60% of the viewport height */
+    }
+
+    .clear-btn, .save-btn-pop {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+
+
 .signature-popup {
     position: fixed;
     top: 50%;
@@ -171,7 +206,10 @@ input[type="radio"] {
 }
 
 #signatureCanvas {
-    margin-bottom: 10px;
+    width: 100%;
+    max-width: 95%; /* Allows slight padding from edges on mobile */
+    height: auto;
+    max-height: 250px;
 }
 
 .close-btn {
@@ -261,12 +299,17 @@ input[type="radio"] {
 }
 
 [dir="rtl"] .form-floating .form-control {
+    direction: rtl;
     text-align: right;
 }
 
-[dir="rtl"] .d-flex {
-    flex-direction: row-reverse;
+[dir="rtl"] .form-floating label {
+    right: 0;
+    left: auto;
+    padding-right: 1em; /* Adjust as necessary */
 }
+
+
 
 [dir="rtl"] .year-created .form-floating {
     margin-left: 0;
@@ -279,10 +322,7 @@ input[type="radio"] {
 
 /* New CSS for RTL adjustments */
 
-/* Reverse radio button and label */
-[dir="rtl"] .radio-label {
-    flex-direction: row-reverse;
-}
+
 
 [dir="rtl"] .radio-label > * {
     text-align: right;
