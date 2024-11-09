@@ -6,7 +6,7 @@ const translations = {
         artistNameLabel: 'Artist Name*',
         artworkTitleLabel: 'Artwork Title*',
         editionLabel: 'Edition*',
-        artisticProofExplanation: 'Artistic Proof explanation',
+        artisticProofExplanation: '* Artist\'s Proofs are the copies of the original that the artist is keeping for personal use. (Not a mandatory field)',
         mediaLabel: 'Media*',
         mediaFineArtOption: 'Archival Pigment Print On Fine Art Paper',
         mediaCustomLabel: 'Custom Text',
@@ -30,6 +30,9 @@ const translations = {
         widthPlaceholder: 'Width',
         heightPlaceholder: 'Height',
         warning: 'Please fill out all mandatory fields',
+        editionPlaceHolder1: 'Edition No.',
+        editionPlaceHolder2: 'Edition Of',
+        editionPlaceHolder3: 'Total AP*',
     },
     he: {
         description1: 'ניתן להוסיף להדפסה תעודת מקוריות על מסמך מעוצב שלנו, עליכם למלא את הפרטים, להוסיף תמונה מוקטנת של העבודה, ולשמור כקובץ PDF אותו אתם יכולים להוריד לשימושכם.',
@@ -39,7 +42,7 @@ const translations = {
         artistNameLabel: 'שם האמן (אנגלית)*',
         artworkTitleLabel: 'שם היצירה (אנגלית)*',
         editionLabel: 'מהדורה*',
-        artisticProofExplanation: 'הסבר ארטיסטיק פרוף',
+        artisticProofExplanation: '* Artist\'s Proofs - מהדורה נוספת של עותקים שהאמן שומר לשימושו האישי (לא שדה חובה)',
         mediaLabel: 'טכניקה וחומרים*',
         mediaCustomLabel: 'טקסט חופשי (אנגלית)',
         dimensionsLabel: 'מידות היצירה (ס״מ)*',
@@ -62,7 +65,9 @@ const translations = {
         widthPlaceholder: 'רוחב',
         heightPlaceholder: 'גובה',
         warning: 'נא למלא את כל שדות החובה',
-
+        editionPlaceHolder1: 'מספר עותק',
+        editionPlaceHolder2: 'סה״כ עותקים',
+        editionPlaceHolder3: 'סה״כ עותקי AP*',
     }
 };
 
@@ -355,7 +360,7 @@ function generateAndDownloadPDF() {
 
     var includeWhiteBorders = document.getElementById("includeWhiteBorders").checked;
     if (includeWhiteBorders) {
-        dimensions += " (include white borders)";
+        dimensions += " (includes white border)";
     }
 
     // Media selection
