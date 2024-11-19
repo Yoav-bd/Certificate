@@ -6,7 +6,7 @@ const translations = {
         artistNameLabel: 'Artist Name*',
         artworkTitleLabel: 'Artwork Title*',
         editionLabel: 'Edition*',
-        artisticProofExplanation: '* Artist\'s Proofs are the copies of the original that the artist is keeping for personal use. (Not a mandatory field)',
+        artisticProofExplanation: '** Artist\'s Proofs are the copies of the original that the artist is keeping for personal use. (Not a mandatory field)',
         mediaLabel: 'Media*',
         mediaFineArtOption: 'Archival Pigment Print On Fine Art Paper',
         mediaCustomLabel: 'Custom Text',
@@ -32,17 +32,17 @@ const translations = {
         warning: 'Please fill out all mandatory fields',
         editionPlaceHolder1: 'Edition No.',
         editionPlaceHolder2: 'Edition Of',
-        editionPlaceHolder3: 'Total AP*',
+        editionPlaceHolder3: 'Total AP**',
     },
     he: {
         description1: 'ניתן להוסיף להדפסה תעודת מקוריות על מסמך מעוצב שלנו, עליכם למלא את הפרטים, להוסיף תמונה מוקטנת של העבודה, ולשמור כקובץ PDF אותו אתם יכולים להוריד לשימושכם.',
-        description2:'במידה ותרצו שנדפיס את התעודה, ניתן לבחור בין שתי אופציות של ניירות בגודל A4, נייר פיין ארט מט 200 גרם בעלות של 35 ש"ח, או על נייר ייעודי של חברת HAHNEMUHLE שמגיע עם זוג מדבקות הולגרמה תואמות לתעודה ולעבודה, בעלות של 70 ש"ח.',
+        description2: 'במידה ותרצו שנדפיס את התעודה, ניתן לבחור בין שתי אופציות של ניירות בגודל A4, נייר פיין ארט מט 200 גרם בעלות של 35 ש"ח, או על נייר ייעודי של חברת HAHNEMUHLE שמגיע עם זוג מדבקות הולגרמה תואמות לתעודה ולעבודה, בעלות של 70 ש"ח.',
         documentTitle: 'תעודה מקורית',
-        certificateTitle: 'תעודה מקורית',
+        certificateTitle: 'תעודת מקוריות',
         artistNameLabel: 'שם האמן (אנגלית)*',
         artworkTitleLabel: 'שם היצירה (אנגלית)*',
         editionLabel: 'מהדורה*',
-        artisticProofExplanation: '* Artist\'s Proofs - מהדורה נוספת של עותקים שהאמן שומר לשימושו האישי (לא שדה חובה)',
+        artisticProofExplanation: '** Artist\'s Proofs - מהדורה נוספת של עותקים שהאמן שומר לשימושו האישי (שדה לא חובה)',
         mediaLabel: 'טכניקה וחומרים*',
         mediaCustomLabel: 'טקסט חופשי (אנגלית)',
         dimensionsLabel: 'מידות היצירה (ס״מ)*',
@@ -67,7 +67,7 @@ const translations = {
         warning: 'נא למלא את כל שדות החובה',
         editionPlaceHolder1: 'מספר עותק',
         editionPlaceHolder2: 'סה״כ עותקים',
-        editionPlaceHolder3: 'סה״כ עותקי AP*',
+        editionPlaceHolder3: 'סה"כ AP** ',
     }
 };
 
@@ -115,11 +115,11 @@ function setLanguageDirection(lang) {
 // Translate Page Content
 function translatePage(lang) {
     const elementsToTranslate = document.querySelectorAll('[data-translate]');
-    
+
     elementsToTranslate.forEach(element => {
         const key = element.getAttribute('data-translate');
         const translation = translations[lang][key];
-        
+
         if (translation) {
             if (element.tagName === 'INPUT') {
                 // Update the placeholder for input fields
@@ -206,7 +206,7 @@ function addEventListeners(lang) {
                 signatureUploadedInfo.style.display = "flex";
                 // Add the required classes
                 signatureUploadedInfo.classList.add("uploaded-file", "w-100", "d-flex", "justify-content-between", "align-items-center");
-                
+
             };
             fileReader.readAsDataURL(file); // Read the file as Data URL
         }
@@ -383,7 +383,7 @@ function generateAndDownloadPDF() {
     var imageUrl = artworkImage || '';
 
     // Define the content that matches your certificate design
-     var certificateContent = `
+    var certificateContent = `
         <div style="text-align: center; direction: ltr;">
     <div
         style="width: 199mm; height: 285mm; margin: 20px; text-align: center; font-family: Arial, sans-serif; border: 2px solid black; box-sizing: border-box; page-break-inside: avoid;">
@@ -423,10 +423,10 @@ function generateAndDownloadPDF() {
                     style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
                     Year Created: ${yearCreated}</p>
                 ${yearPrinted
-                ? `<p
+            ? `<p
                     style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
                     Year Printed: ${yearPrinted}</p>`
-                : `<div style="margin-bottom: 35px;"></div>`}
+            : `<div style="margin-bottom: 35px;"></div>`}
                 <div
                     style="width: 230px; height: 80px; margin: 0px auto; display: flex; justify-content: center; align-items: center;">
                     <img src="${signatureImage}" alt="Signature"
@@ -467,7 +467,7 @@ function generateAndDownloadPDF() {
     </div> <!-- End outermost black box -->
 </div>
         `;
-    
+
     // Use html2pdf.js to generate the PDF
     var opt = {
         margin: [0.5, 0.5, 0.5, 0.5],  // Set margins to avoid cutting off the edges
@@ -487,7 +487,7 @@ function makeRadioButtonsDeselectable() {
     const radioButtons = document.querySelectorAll('input[type="radio"]');
 
     radioButtons.forEach(radio => {
-        radio.addEventListener('click', function() {
+        radio.addEventListener('click', function () {
             // Toggle the custom 'data-was-checked' attribute
             if (radio.hasAttribute('data-was-checked')) {
                 radio.checked = false;
@@ -498,7 +498,7 @@ function makeRadioButtonsDeselectable() {
         });
 
         // Ensure the 'data-was-checked' attribute is removed when clicking another radio in the same group
-        radio.addEventListener('change', function() {
+        radio.addEventListener('change', function () {
             radioButtons.forEach(otherRadio => {
                 if (otherRadio !== radio) {
                     otherRadio.removeAttribute('data-was-checked');

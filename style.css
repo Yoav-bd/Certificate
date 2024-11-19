@@ -1,10 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
 
-* {
+@font-face {
+    font-family: "SctoGroteskA";
+    font-weight: 700;
+    src: url('fonts/scto-grotesk-a-bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: "SimplerPro";
+    font-weight: 500;
+    src: url('fonts/simpler-pro-bold.woff2') format('woff2');
+}
+
+h2{
+    font-family: "SctoGroteskA";
+}
+
+:lang(en) body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Schibsted Grotesk", sans-serif;
+    font-family: "SctoGroteskA";
+}
+
+:lang(he) body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "SimplerPro";
 }
 
 body {
@@ -87,9 +109,13 @@ label {
     height: 50px;
 }
 
+
+.mx-4-5{
+ margin-bottom: 2.65rem;
+}
 /* Updated to use logical properties */
 .description {
-    border-inline-end: 2px solid black !important;
+    border-inline-end: 3px solid black !important;
 }
 
 .description p {
@@ -183,6 +209,12 @@ input::placeholder {
         font-size: 14px;
         padding: 10px 15px;
     }
+
+    input::placeholder {
+        font-size: smaller;
+      }
+
+
 }
 
 input::-webkit-outer-spin-button,
