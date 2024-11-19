@@ -57,6 +57,13 @@ label {
     padding: 1rem 0px !important;
 }
 
+.form-floating > label {
+    padding: 1rem 0px !important;
+}
+
+label[for="CustomMedia"] {
+    padding: 1.5rem 0px !important;
+}
 .form-floating>.form-control:not(:placeholder-shown) {
     padding-top: 2.625rem;
     padding-bottom: .625rem;
