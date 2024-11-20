@@ -395,36 +395,36 @@ function generateAndDownloadPDF() {
                 style="width: 194.5mm; height: 280.5mm; margin: 0.5mm; border: 1px solid black; box-sizing: border-box; page-break-inside: avoid;">
 
                 <h1
-                    style=" font-weight:400; font-family:'Caslon Ionic Web Regular Regular'; font-size: 45px; margin: 10px; margin-top: 60px;  line-height: 1.2;">
+                    style=" font-weight:400; font-family:'CaslonIonic'; font-size: 45px; margin: 10px; margin-top: 60px;  line-height: 1.2;">
                     <span style="display: block;">CERTIFICATE OF</span>
                     <span style="display: block;">AUTHENTICITY</span>
                 </h1>
                 <p
-                    style="margin-top: 30px; margin-bottom:50px; font-weight:400; font-family:'Caslon Ionic'; font-size: 18px;">
+                    style="margin-top: 30px; margin-bottom:50px; font-weight:400; font-family:'CaslonIonic'; font-size: 18px;">
                     THIS DOCUMENT CERTIFIES THAT THIS ARTWORK IS <br> AN ORIGINAL WORK BY THE ARTIST
                 </p>
                 <div
                     style="width: 500px; height: 250px; margin: 20px auto; display: flex; justify-content: center; align-items: center;">
                     <img src="${imageUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                 </div>
-                <p style="margin-top: 70px; font-family:'Caslon Ionic'; font-size: 16px;">${artistName}</p>
-                <p style="margin-top: -20px; margin-bottom: 30px; font-family:'Quadrant Text Mono';  font-size: 15px;">
+                <p style="margin-top: 70px; font-family:'CaslonIonic'; font-size: 16px;">${artistName}</p>
+                <p style="margin-top: -20px; margin-bottom: 30px; font-family:'QuadrantMono';  font-size: 15px;">
                     ${artworkTitle}</p>
                 <p
-                    style="margin-top: 10px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
+                    style="margin-top: 10px; margin-bottom: 15px; font-size: 18px; font-family:'QuadrantMono'; font-weight: 300; font-size: 15px;">
                     Edition: ${edition}</p>
                 <p
-                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
+                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'QuadrantMono'; font-weight: 300; font-size: 15px;">
                     Media: ${media}</p>
                 <p
-                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
+                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'QuadrantMono'; font-weight: 300; font-size: 15px;">
                     Dimensions: ${dimensions}</p>
                 <p
-                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
+                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'QuadrantMono'; font-weight: 300; font-size: 15px;">
                     Year Created: ${yearCreated}</p>
                 ${yearPrinted
             ? `<p
-                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 15px;">
+                    style="margin-top: -15px; margin-bottom: 15px; font-size: 18px; font-family:'QuadrantMono'; font-weight: 300; font-size: 15px;">
                     Year Printed: ${yearPrinted}</p>`
             : `<div style="margin-bottom: 35px;"></div>`}
                 <div
@@ -433,7 +433,7 @@ function generateAndDownloadPDF() {
                         style="max-width: 100%; max-height: 100%; object-fit: contain;">
                 </div>
                 <div style="width: 50%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
-                <div style="font-family:'Quadrant Text Mono'; font-weight: 300; font-size: 10px;">${artistName}</div>
+                <div style="font-family:'QuadrantMono'; font-weight: 300; font-size: 10px;">${artistName}</div>
 
 
                 <div style="margin-top: 70px; padding-top: 5px;">
