@@ -10,18 +10,18 @@
     font-weight: 500;
     src: url('fonts/simpler-pro-bold.woff2') format('woff2');
 }
-@font-face {
-    font-family: 'CaslonIonic';
-    src: url('./fonts/CaslonIonic-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'QuadrantMono';
-    src: url('./fonts/QuadrantTextMono-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'CaslonIonic';*/
+/*    src: url('fonts/CaslonIonic-Regular.ttf') format('truetype');*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'QuadrantMono';*/
+/*    src: url('fonts/QuadrantTextMono-Regular.otf') format('opentype');*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*}*/
 h2{
     font-family: "SctoGroteskA";
 }
