@@ -432,8 +432,8 @@ function generateAndDownloadPDF() {
                     <img src="${signatureImage}" alt="Signature"
                         style="max-width: 100%; max-height: 100%; object-fit: contain;">
                 </div>
-                <div style="width: 50%; border-top: 1px solid black; margin: 0 auto 10px auto;"></div>
-                <div style="font-family:'QuadrantMono'; font-weight: 300; font-size: 10px;">${artistName}</div>
+                <div style="width: 50%; border-top: 1px solid black; margin: 0 auto;"></div>
+                <div style="font-family:'QuadrantMono'; font-weight: 300; font-size: 10px; margin-top: 2px;">${artistName}</div>
 
 
                 <div style="margin-top: 70px; padding-top: 5px;">
