@@ -408,7 +408,7 @@ function generateAndDownloadPDF() {
                     <img src="${imageUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                 </div>
                 <p style="margin-top: 70px; font-family:'CaslonIonic'; font-size: 16px;">${artistName}</p>
-                <p style="margin-top: -20px; margin-bottom: 30px; font-family:'QuadrantMono';  font-size: 15px;">
+                <p style="margin-top: -18px; margin-bottom: 30px; font-family:'QuadrantMono';  font-size: 15px;">
                     ${artworkTitle}</p>
                 <p
                     style="margin-top: 10px; margin-bottom: 15px; font-size: 18px; font-family:'QuadrantMono'; font-weight: 300; font-size: 15px;">
