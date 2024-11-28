@@ -186,7 +186,7 @@ input::placeholder {
 
 @media screen and (max-width: 576px) {
     .bordered-input span {
-        font-size: 14px;
+        font-size: 12px;
     }
     .bordered-input input {
         font-size: 14px;
