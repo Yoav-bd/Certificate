@@ -159,7 +159,10 @@ function addEventListeners(lang) {
         document.getElementById('signaturePopup').style.display = 'block';
         const canvas = document.getElementById('signatureCanvas');
         signaturePad = new SignaturePad(canvas);
-    }
+      
+        // Disable scrolling on body
+        document.body.style.overflow = 'hidden';
+      }
 
     // Clear Signature
     if (clearButton) {
@@ -181,6 +184,7 @@ function addEventListeners(lang) {
                 signatureUploadedInfo.style.display = "flex";
                 // Add the required classes
                 signatureUploadedInfo.classList.add("uploaded-file", "w-100", "d-flex", "justify-content-between", "align-items-center");
+                document.body.style.overflow = 'auto';
             } else {
                 alert(messages[lang].provideSignature);
             }
@@ -190,9 +194,12 @@ function addEventListeners(lang) {
     // Close Signature Popup
     if (closeButton) {
         closeButton.addEventListener('click', () => {
-            document.getElementById('signaturePopup').style.display = 'none';
+          document.getElementById('signaturePopup').style.display = 'none';
+      
+          // Re-enable scrolling on body
+          document.body.style.overflow = 'auto';
         });
-    }
+      }
 
     // Signature File Upload
     signatureFileInput.addEventListener('change', (event) => {
